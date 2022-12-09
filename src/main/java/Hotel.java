@@ -2,26 +2,27 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
 
-
 /**
- * (a)
- * Write a description of class Hotel here.
+ * (a) The Hotel class can create instances of itself providing a name and one ArrayList of Room objects.
+ * This class interacts with the Room class for managing aspects like bookings, calculating the bill of the booking, check the available rooms...
  *
  * @author (Javier Gonzalez Garcia)
  * @version (24/11/2022)
  */
 
-public class Hotel {
+public class Hotel
+{
     /*
-     * (b)
+     * (b) Instance fields provide a String name and one ArrayList of type of Rooms to every new Hotel instance.
      */
     private String name;
     private ArrayList<Room> rooms;
 
     /*
-     * (c)
+     * (c) Hotel constructor with two parameters, assigning a name and a new empty ArrayList for every Hotel object.
      */
-    public Hotel(String aName) {
+    public Hotel(String aName)
+    {
         this.name = aName;
         this.rooms = new ArrayList<Room>();
     }
@@ -29,7 +30,8 @@ public class Hotel {
     /**
      * (d) Adds some unoccupied test rooms to the hotel
      */
-    public void addRooms() {
+    public void addRooms()
+    {
         int i = 10;
         while (i < 19) {
             String number = "" + i;
@@ -51,17 +53,13 @@ public class Hotel {
             rooms.add(r);
             i++;
         }
-        Room room = rooms.get(1);
-        String number = room.getNumber();
-        double rate = room.getDailyRate();
-        System.out.println(number);
-        System.out.println(rate);
     }
 
     /*
-     * (e)
+     * (e) Calculate the bill according to the daily rate and the number of days.
      */
-    public double calculateBill(Room room, int days) {
+    public double calculateBill(Room room, int days)
+    {
         double bill = room.getDailyRate() * days;
         if (days > 0 && days >= 4) {
             bill -= bill * 1 / 10;
@@ -70,9 +68,10 @@ public class Hotel {
     }
 
     /*
-     * (f)
+     * (f) If the type of room requested is available, add it into a list of rooms.
      */
-    public ArrayList<Room> getMatchingRooms(String roomType) {
+    public ArrayList<Room> getMatchingRooms(String roomType)
+    {
         ArrayList<Room> matchingRooms = new ArrayList<>();
         int numberOfRooms = rooms.size();
         for (int i = 0; i < numberOfRooms; i++) {
@@ -85,9 +84,10 @@ public class Hotel {
     }
 
     /*
-     * (g)
+     * (g) Check how many vacancies rooms there are in the hotel.
      */
-    public int vacancies() {
+    public int vacancies()
+    {
         int vacancies = 0;
         Room room;
         ArrayList<Room> roomsAvailable = new ArrayList<>();
@@ -110,9 +110,10 @@ public class Hotel {
     }
 
     /*
-     * (h)
+     * (h) Book a room by its number and remove it from the ArrayList.
      */
-    public void bookRoom(Room room) {
+    public void bookRoom(Room room)
+    {
         for (int i = 0; i < rooms.size(); i++) {
             if (Objects.equals(rooms.get(i).getNumber(), room.getNumber())) {
                 this.removeRoom(room.getNumber());
@@ -121,9 +122,10 @@ public class Hotel {
     }
 
     /*
-     * (i)
+     * (i) Remove a room by number if that room exists in the hotel (The addRoom method will set up first a list of empty rooms).
      */
-    public void removeRoom(String roomNumber) {
+    public void removeRoom(String roomNumber)
+    {
         Iterator<Room> it = rooms.iterator();
         boolean found = false;
         while (it.hasNext()) {
